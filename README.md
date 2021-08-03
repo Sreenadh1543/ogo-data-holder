@@ -1,5 +1,5 @@
 # ogo-data-holder
-This project is to hold data for ogo analysis and developers .
+This project is to hold data for ogo analysts and developers .
 
 # what we archive here ?
 
