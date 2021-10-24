@@ -10,7 +10,7 @@ POST : {host}:{port}/idea-genie/user/register
 Request Body :
 
 {
-  "email_id":"",
+  "emailId":"",
   "password":"",
   "firstName":"",
   "lastName":"",
@@ -48,7 +48,7 @@ POST : {host}:{port}/idea-genie/user/sign-in
 Request Body :
 
 {
-  "email_id":"",
+  "emailId":"",
   "password":""
 }
 
@@ -208,12 +208,12 @@ Response :
       "problemStatement":"",
       "conceptToBeProved":"",
       "projectLink":"",
-      "supprtingDocument":""
+      "supportingDocument":""
    },
    "pointOfView":{
       "problemStatement":"",
       "pointOfView":"",
-      "supprtingDocument":""
+      "supportingDocument":""
    },
    "processImprovement":{
      "existingProcess":"",
@@ -276,12 +276,12 @@ Request Body :
       "problemStatement":"",
       "conceptToBeProved":"",
       "projectLink":"",
-      "supprtingDocument":""
+      "supportingDocument":""
    },
    "pointOfView":{
       "problemStatement":"",
       "pointOfView":"",
-      "supprtingDocument":""
+      "supportingDocument":""
    },
    "processImprovement":{
      "existingProcess":"",
@@ -351,12 +351,12 @@ Request Body :
       "problemStatement":"",
       "conceptToBeProved":"",
       "projectLink":"",
-      "supprtingDocument":""
+      "supportingDocument":""
    },
    "pointOfView":{
       "problemStatement":"",
       "pointOfView":"",
-      "supprtingDocument":""
+      "supportingDocument":""
    },
    "processImprovement":{
      "existingProcess":"",
@@ -397,7 +397,7 @@ Error :
   "message" : "Technical error in updating the idea"
 }
 
-400 Baddata for invalid input
+400 Bad data for invalid input
 
 {
   "code" : "APIError010",
@@ -431,10 +431,10 @@ Response :
   "mobileNumber":"",
   "skills":[],
   "preferredRoles":[],
-  "privelege":""
+  "privilege":""
 }
 
-Possible values for privelege:
+Possible values for privilege:
 
 1)default
 2)Evaluator
@@ -468,18 +468,18 @@ Request Body :
 200 Ok 
 
 {
-  "email_id":"",
+  "emailId":"",
   "password":"",
   "firstName":"",
   "lastName":"",
   "mobileNumber":"",
   "skills":[],
   "preferredRoles":[],
-  "privelege":""
+  "privilege":""
 }
 
 
-Possible values for privelege:
+Possible values for privilege:
 
 1)default
 2)Evaluator
