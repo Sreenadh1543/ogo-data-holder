@@ -94,7 +94,7 @@ Response :
     "count":5,
     "code":"EP"
   },
- "evaluatated":{
+ "evaluated":{
     "count":2,
     "code":"EV"
  },
