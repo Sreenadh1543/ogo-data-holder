@@ -1,0 +1,500 @@
+
+Use case 1 :  Only registered users should submit ideas in the “Idea genie” portal.
+
+------------------------------------------------------------------------------------------
+
+Operation : 1
+
+POST : {host}:{port}/idea-genie/register-user
+
+Request Body :
+
+{
+  "email_id":"",
+  "password":"",
+  "firstName":"",
+  "lastName":"",
+  "mobileNumber":"",
+  "skills":[],
+  "preferredRoles":[]
+
+}
+
+Response :
+
+200 Ok 
+
+Error :
+
+
+500
+
+{
+  "code" : "APIError001",
+  "message" : "Failure in registering the user"
+}
+
+
+{
+  "code" : "APIError002",
+  "message" : "User email already exists in data base"
+}
+
+------------------------------------------------------------------------------------------
+Operation : 2
+
+POST : {host}:{port}/idea-genie/sign-in
+
+Request Body :
+
+{
+  "email_id":"",
+  "password":""
+}
+
+Response :
+
+200 Ok 
+
+Error :
+
+
+500
+
+{
+  "code" : "APIError003",
+  "message" : "Not a valid user"
+}
+
+{
+  "code" : "APIError004",
+  "message" : "Technical error singing in"
+}
+
+
+---------------------------------------------------------------------------------------
+
+Use-case 2:  A logged in user can submit ideas in “Idea genie” portal.
+
+Operation : 3
+
+GET: {host}:{port}/idea-genie/get-dashboard
+
+Request Body :
+
+N/A
+
+Response :
+
+200 Ok 
+
+{
+ "totalIdeas":10,
+ "evaluationPending":{
+    "count":5,
+    "code":"EP"
+  },
+ "evaluatated":{
+    "count":2,
+    "code":"EV"
+ },
+ "needClarification":{
+    "count":1,
+    "code":"NC"
+  },
+ "accepted":{
+    "count":2,
+    "code":"ACC"
+  }
+}
+
+Error :
+
+
+500
+
+{
+  "code" : "APIError006",
+  "message" : "Technical error in retrieving user dashboard"
+}
+
+
+Logic :
+
+if role is user get only the count of ideas for that particular user
+
+if role is evaluator get the count of all the ideas available.
+---------------------------------------------------------------------------------------
+
+Operation : 4
+
+GET: {host}:{port}/idea-genie/ideas/{status-code}
+
+status code Should be 
+
+EP : Evaluation Pending
+EV : Evaluated
+NC : Need clarification
+ACC : Accepted
+
+Request Body :
+
+N/A
+
+Response :
+
+200 Ok 
+
+{
+  ideas:[{
+
+       "id":"",
+       "subject":"",
+       "domain":"",
+       "status":""
+    },{
+       "id":"",
+       "subject":"",
+       "domain":"",
+       "status":""
+    }]
+}
+
+
+Error :
+
+
+500
+
+{
+  "code" : "APIError007",
+  "message" : "Technical error in retrieving idea list"
+}
+
+400 Bad data for invalid input
+
+{
+  "code" : "APIError010",
+  "message" : "Invalid input "
+}
+
+Logic :
+
+if user retrieve ideas linked only to his user id 
+
+if evaluator retreive ideas linked to all users
+
+---------------------------------------------------------------------------------------
+Operation : 5
+
+GET: {host}:{port}/idea-genie/ideas/idea/{id}
+
+Request Body :
+
+N/A
+
+Response :
+
+200 Ok 
+
+{
+  "id":"",
+  "subject":"",
+  "status":"",
+  "category":"",
+  "nature":"",
+  "additionalInformation:"",
+  "proofOfConcept":{
+      "problemStatement":"",
+      "conceptToBeProved":"",
+      "projectLink":"",
+      "supprtingDocument":""
+   },
+   "pointOfView":{
+      "problemStatement":"",
+      "pointOfView":"",
+      "supprtingDocument":""
+   },
+   "processImprovement":{
+     "existingProcess":"",
+     "newProcess":""
+   }
+}
+
+status code Should be 
+---------------------
+EP : Evaluation Pending
+EV : Evaluated
+NC : Need clarification
+ACC : Accepted
+
+Nature of idea
+---------------
+New : New idea
+EXI : Existing idea
+
+Category of idea
+----------------
+PI : Process Improvement
+POC : Proof of concept
+POV : Point of view
+
+
+Error :
+
+
+500
+
+{
+  "code" : "APIError008",
+  "message" : "Technical error in retrieving idea "
+}
+
+
+400 Baddata for invalid input
+
+{
+  "code" : "APIError010",
+  "message" : "Invalid input "
+}
+
+---------------------------------------------------------------------------------------
+
+Operation : 6
+
+POST : {host}:{port}/idea-genie/idea
+
+Request Body :
+
+{
+  "subject":"",
+  "status":"",
+  "category":"",
+  "nature":"",
+  "additionalInformation:"",
+  "proofOfConcept":{
+      "problemStatement":"",
+      "conceptToBeProved":"",
+      "projectLink":"",
+      "supprtingDocument":""
+   },
+   "pointOfView":{
+      "problemStatement":"",
+      "pointOfView":"",
+      "supprtingDocument":""
+   },
+   "processImprovement":{
+     "existingProcess":"",
+     "newProcess":""
+   }
+}
+
+status code Should be 
+---------------------
+EP : Evaluation Pending
+EV : Evaluated
+NC : Need clarification
+ACC : Accepted
+
+Nature of idea
+---------------
+New : New idea
+EXI : Existing idea
+
+Category of idea
+----------------
+PI : Process Improvement
+POC : Proof of concept
+POV : Point of view
+
+Error :
+
+
+500
+
+{
+  "code" : "APIError009",
+  "message" : "Technical error in submitting idea "
+}
+
+
+400 Baddata for invalid input
+
+{
+  "code" : "APIError010",
+  "message" : "Invalid input "
+}
+
+
+---------------------------------------------------------------------------------------
+Use-case 3:  A registered user marked as “evaluator” by “admin” in the “Idea genie portal” should be able to view all the submitted ideas.
+
+Operation : 7
+
+PUT: {host}:{port}/idea-genie/idea
+
+Request Body :
+
+{
+  "id:"",
+  "subject":"",
+  "status":"",
+  "category":"",
+  "nature":"",
+  "additionalInformation:"",
+  "proofOfConcept":{
+      "problemStatement":"",
+      "conceptToBeProved":"",
+      "projectLink":"",
+      "supprtingDocument":""
+   },
+   "pointOfView":{
+      "problemStatement":"",
+      "pointOfView":"",
+      "supprtingDocument":""
+   },
+   "processImprovement":{
+     "existingProcess":"",
+     "newProcess":""
+   }
+}
+
+status code Should be 
+---------------------
+EP : Evaluation Pending
+EV : Evaluated
+NC : Need clarification
+ACC : Accepted
+
+Nature of idea
+---------------
+New : New idea
+EXI : Existing idea
+
+Category of idea
+----------------
+PI : Process Improvement
+POC : Proof of concept
+POV : Point of view
+
+
+Response :
+
+200 Ok 
+
+Error :
+
+
+500
+
+{
+  "code" : "APIError012",
+  "message" : "Technical error in updating the idea"
+}
+
+400 Baddata for invalid input
+
+{
+  "code" : "APIError010",
+  "message" : "Invalid input "
+}
+
+
+
+-----------------------------------------------------------------------------------------------
+
+Use-case 4: A user marked as “admin” can log in to the system to manage privileges of the users.
+
+Operation : 8
+
+GET: {host}:{port}/idea-genie/get-user?firstName=""&emailId=""&lastName=""
+
+Request Body :
+
+N/A
+
+
+Response :
+
+200 Ok 
+
+{
+  "email_id":"",
+  "password":"",
+  "firstName":"",
+  "lastName":"",
+  "mobileNumber":"",
+  "skills":[],
+  "preferredRoles":[],
+  "privelege":""
+}
+
+Possible values for privelege:
+
+1)default
+2)Evaluator
+3)Admin
+
+
+Error :
+
+500
+
+{
+  "code" : "APIError013",
+  "message" : "Technical error in retrieving user"
+}
+
+400 Bad data for invalid input
+
+{
+  "code" : "APIError010",
+  "message" : "Invalid input "
+}
+
+---------------------------------------------------------------------------------------------------
+
+PUT : {host}:{port}/idea-genie/user
+
+Operation : 9
+
+Request Body :
+
+200 Ok 
+
+{
+  "email_id":"",
+  "password":"",
+  "firstName":"",
+  "lastName":"",
+  "mobileNumber":"",
+  "skills":[],
+  "preferredRoles":[],
+  "privelege":""
+}
+
+
+Possible values for privelege:
+
+1)default
+2)Evaluator
+3)Admin
+
+
+Error :
+
+500
+
+{
+  "code" : "APIError014",
+  "message" : "Technical error in updating user"
+}
+
+400 Bad data for invalid input
+
+{
+  "code" : "APIError010",
+  "message" : "Invalid input "
+}
+
+---------------------------------------------------------------------------------------------------
