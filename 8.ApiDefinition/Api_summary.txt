@@ -182,7 +182,7 @@ Logic :
 
 if user retrieve ideas linked only to his user id 
 
-if evaluator retreive ideas linked to all users
+if evaluator retrieve ideas linked to all users
 
 ---------------------------------------------------------------------------------------
 Operation : 5
